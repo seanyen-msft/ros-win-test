@@ -8,7 +8,7 @@ environment:
 
 install:
  - set PATH=%PYTHON%\Scripts;%PYTHON%;%PATH%
- - pip install -U pip setuptools
+ - python -m pip install --upgrade pip
  - ps: Start-FileDownload 'https://ros-win.visualstudio.com/defaultcollection/ros-win/_apis/git/repositories/ros-win/items?api-version=1.0&scopepath=%2Ftools%2Fcatkin-requirements.patch.txt'
 
 build_script:
