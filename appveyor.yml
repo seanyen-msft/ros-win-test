@@ -1,0 +1,15 @@
+platform: x64
+configuration: Release
+image: Visual Studio 2017
+
+environment:
+  matrix:
+    - PYTHON: "C:\\Python27-x64"
+
+install:
+ - set PATH=%PYTHON%\Scripts;%PYTHON%;%PATH%
+ - pip install -U pip setuptools
+ - ps: Start-FileDownload 'https://ros-win.visualstudio.com/defaultcollection/ros-win/_apis/git/repositories/ros-win/items?api-version=1.0&scopepath=%2Ftools%2Fcatkin-requirements.patch.txt'
+
+build_script:
+ - dir
