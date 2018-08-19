@@ -10,8 +10,7 @@ install:
  - set PATH=%PYTHON%\Scripts;%PYTHON%;%PATH%
  - python -m pip install --upgrade pip
  - pip install -U rosdep rosinstall_generator wstool rosinstall
- - set CATKIN_PY2_PATCH_REQUIREMENTS=https://ros-win.visualstudio.com/defaultcollection/ros-win/_apis/git/repositories/ros-win/items?api-version=1.0&scopepath=%2Ftools%2Fcatkin-requirements.patch.txt
- - pip install -U --force-reinstall --no-deps -r %CATKIN_PY2_PATCH_REQUIREMENTS%
+ - pip install -U --force-reinstall --no-deps -r 'https://ros-win.visualstudio.com/defaultcollection/ros-win/_apis/git/repositories/ros-win/items?api-version=1.0&scopepath=%2Ftools%2Fcatkin-requirements.patch.txt'
  - pip freeze
 
 build_script:
