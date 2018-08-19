@@ -2,16 +2,29 @@ platform: x64
 configuration: Release
 image: Visual Studio 2017
 
-environment:
-  matrix:
-    - PYTHON: "C:\\Python27-x64"
-
 install:
+
+ # ros-win assumes the python path is c:\Python27amd64
+ - mklink /d c:\python27amd64 c:\Python27-x64
+ - set PYTHON=c:\python27amd64
  - set PATH=%PYTHON%\Scripts;%PYTHON%;%PATH%
+
+ # install ros workspace tools
  - python -m pip install --upgrade pip
  - pip install -U rosdep rosinstall_generator wstool rosinstall
- - pip install -U --force-reinstall --no-deps -r 'https://ros-win.visualstudio.com/defaultcollection/ros-win/_apis/git/repositories/ros-win/items?api-version=1.0&scopepath=%2Ftools%2Fcatkin-requirements.patch.txt'
+
+ # patch the tools with ros-win changes
+ - ps: Start-FileDownload 'https://ros-win.visualstudio.com/defaultcollection/ros-win/_apis/git/repositories/ros-win/items?api-version=1.0&scopepath=%2Ftools%2Fcatkin-requirements.patch.txt' -FileName 'catkin-requirements.patch.txt'
+ - pip install -U --force-reinstall --no-deps -r catkin-requirements.patch.txt 
  - pip freeze
 
+ # add ros-win Chocolatey source for rosdep
+ - choco source add -n=ros-win -s="https://roswin.azurewebsites.net/api/v2" --priority=1
+
+ # binary install
+ - choco install ros-melodic-ros_base
+
 build_script:
- - dir
+ - call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat"
+ - call "C:\opt\ros\melodic\x64\setup.bat"
+ - rospack list
