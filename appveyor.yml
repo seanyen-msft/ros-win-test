@@ -12,16 +12,11 @@ install:
  # install ros workspace tools
  - python -m pip install --upgrade pip
  - pip install -U setuptools
-# - pip install -U rosdep rosinstall_generator wstool rosinstall
- - pip install git+https://github.com/ms-iot/wstool@init_windows#egg=wstool
- - dir c:\python27amd64\lib\site-packages
- - dir c:\python27amd64\lib\site-packages\wstool-0.1.17-py2.7.egg-info
+ - pip install -U rosdep rosinstall_generator wstool rosinstall
 
  # patch the tools with ros-win changes
- #- ps: Start-FileDownload 'https://ros-win.visualstudio.com/defaultcollection/ros-win/_apis/git/repositories/ros-win/items?api-version=1.0&scopepath=%2Ftools%2Fcatkin-requirements.patch.txt' -FileName 'catkin-requirements.patch.txt'
- #- pip install -U --no-deps -r catkin-requirements.patch.txt
- - pip uninstall wstool -y -v
- - pip install -U --no-deps git+https://github.com/ms-iot/wstool@init_windows#egg=wstool -vvv
+ - ps: Start-FileDownload 'https://ros-win.visualstudio.com/defaultcollection/ros-win/_apis/git/repositories/ros-win/items?api-version=1.0&scopepath=%2Ftools%2Fcatkin-requirements.patch.txt' -FileName 'catkin-requirements.patch.txt'
+ - pip install -U --no-deps --force-reinstall -r catkin-requirements.patch.txt
  - pip freeze
 
  # add ros-win Chocolatey source for rosdep
