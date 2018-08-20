@@ -15,7 +15,7 @@ install:
  - pip install -U rosdep rosinstall_generator wstool rosinstall
 
  # patch the tools with ros-win changes
- - ps: Start-FileDownload 'https://ros-win.visualstudio.com/defaultcollection/ros-win/_apis/git/repositories/ros-win/items?api-version=1.0&scopepath=%2Ftools%2Fcatkin-requirements.patch.txt' -FileName 'catkin-requirements.patch.txt'
+ - curl --output "catkin-requirements.patch.txt" "https://ros-win.visualstudio.com/defaultcollection/ros-win/_apis/git/repositories/ros-win/items?api-version=1.0&scopepath=%2Ftools%2Fcatkin-requirements.patch.txt"
  - pip install -U --ignore-installed --no-deps --force-reinstall -r catkin-requirements.patch.txt
  - pip freeze
 
