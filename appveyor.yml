@@ -11,6 +11,7 @@ install:
 
  # install ros workspace tools
  - python -m pip install --upgrade pip
+ - pip install -U setuptools
  - pip install -U rosdep rosinstall_generator wstool rosinstall
 
  # patch the tools with ros-win changes
