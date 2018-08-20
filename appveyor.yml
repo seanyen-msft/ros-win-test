@@ -19,7 +19,7 @@ install:
  # patch the tools with ros-win changes
  #- ps: Start-FileDownload 'https://ros-win.visualstudio.com/defaultcollection/ros-win/_apis/git/repositories/ros-win/items?api-version=1.0&scopepath=%2Ftools%2Fcatkin-requirements.patch.txt' -FileName 'catkin-requirements.patch.txt'
  #- pip install -U --no-deps -r catkin-requirements.patch.txt
- - pip uninstall wstool
+ - pip uninstall wstool -y -v
  - pip install -U --no-deps git+https://github.com/ms-iot/wstool@init_windows#egg=wstool -vvv
  - pip freeze
 
