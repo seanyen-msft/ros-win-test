@@ -28,5 +28,8 @@ install:
 build_script:
  - call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat"
  - call "C:\opt\ros\melodic\x64\setup.bat"
- - rosdep update
- - rosdep install --from-paths C:\opt\ros\melodic\x64 --ignore-src -r -y
+ #- rosdep update
+ #- rosdep install --from-paths C:\opt\ros\melodic\x64 --ignore-src -r -y
+ - mkdir catkin_ws\src
+ - cd catkin_ws
+ - rosinstall_generator robot --deps --exclude RPP
